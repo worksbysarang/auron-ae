@@ -1,0 +1,65 @@
+/* ============================================================
+   AURON.AE — Design Tokens
+   Change the palette here to retheme the entire site.
+   ============================================================ */
+
+:root {
+  /* Palette */
+  --color-paper:    #F2EBDD;
+  --color-ink:      #171717;
+  --color-grey:     #8C8A80;
+  --color-orange:   #FF6B35;
+  --color-yellow:   #E6F14A;
+  --color-blue:     #6D8FB3;
+  --color-surface:  #E8DFCe;
+  --color-dark-bg:  #111111;
+  --color-dark-surface: #1A1A1A;
+  --color-dark-border: #2A2A2A;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', 'Arial Black', system-ui, sans-serif;
+  --font-body:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'Space Mono', 'Courier New', monospace;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Layout */
+  --max-w: 1280px;
+  --nav-h: 60px;
+
+  /* Borders */
+  --border-thin: 1px solid var(--color-ink);
+  --border-med:  2px solid var(--color-ink);
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Shadows (offset / retro feel) */
+  --shadow-card: 3px 3px 0 var(--color-ink);
+  --shadow-card-hover: 5px 5px 0 var(--color-ink);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-med:  250ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Keep retro paper theme – not inverting to pure dark */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
