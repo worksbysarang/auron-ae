@@ -1,4 +1,4 @@
-import { siteConfig } from '../data/siteConfig';
+import { useSiteConfig } from '../hooks/useSiteConfig';
 
 const socialDefs = [
   { key: 'instagram', label: 'Instagram',  icon: '◈' },
@@ -8,6 +8,7 @@ const socialDefs = [
 ];
 
 export default function Contact() {
+  const { config: siteConfig } = useSiteConfig();
   const activeSocials = socialDefs.filter(s => siteConfig.socials[s.key]);
   const hasEmail = siteConfig.email && !siteConfig.email.includes('YOUR_EMAIL');
 

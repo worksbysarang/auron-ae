@@ -1,11 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { siteConfig } from '../data/siteConfig';
+import { useSiteConfig } from '../hooks/useSiteConfig';
 import '../styles/components.css';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
+  const { config: siteConfig } = useSiteConfig();
 
   const links = [
     { to: '/',        label: 'Home' },

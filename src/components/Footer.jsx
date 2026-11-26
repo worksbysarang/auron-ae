@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { siteConfig } from '../data/siteConfig';
+import { useSiteConfig } from '../hooks/useSiteConfig';
 import '../styles/components.css';
 
 const socialIcons = {
@@ -10,6 +10,7 @@ const socialIcons = {
 };
 
 export default function Footer() {
+  const { config: siteConfig } = useSiteConfig();
   const activeSocials = Object.entries(siteConfig.socials).filter(([, v]) => v);
 
   return (

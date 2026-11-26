@@ -193,66 +193,8 @@ The site includes a private admin dashboard at `/admin`.
    - **Project URL** → `VITE_SUPABASE_URL`
    - **anon public** key → `VITE_SUPABASE_ANON_KEY`
 4. Create a `.env` file from `.env.example` and paste the values
-5. Run the SQL schema below in the Supabase **SQL Editor**
-
-### Database schema (run in Supabase SQL Editor)
-
-```sql
--- Enable UUID extension
-create extension if not exists "uuid-ossp";
-
--- Projects table
-create table projects (
-  id            uuid primary key default uuid_generate_v4(),
-  slug          text unique not null,
-  title         text not null,
-  summary       text,
-  description   text,
-  category      text,
-  media_type    text,         -- 'youtube' | 'video' | 'image' | 'gallery'
-  media_url     text,
-  youtube_url   text,
-  thumbnail_url text,
-  gallery       jsonb default '[]',
-  year          text,
-  role          text,
-  tools         jsonb default '[]',
-  client_label  text,
-  external_link text,
-  alt_text      text,
-  featured      boolean default false,
-  status        text default 'draft',  -- 'draft' | 'published'
-  sort_order    integer default 0,
-  created_at    timestamptz default now(),
-  updated_at    timestamptz default now()
-);
-
--- Site settings table
-create table site_settings (
-  id         uuid primary key default uuid_generate_v4(),
-  key        text unique not null,
-  value      jsonb,
-  updated_at timestamptz default now()
-);
-
--- RLS: Enable
-alter table projects     enable row level security;
-alter table site_settings enable row level security;
-
--- Public read of published projects only
-create policy "Public read published projects"
-  on projects for select
-  using (status = 'published');
-
--- Owner full access (replace with your Supabase user ID or use service role)
-create policy "Owner full access to projects"
-  on projects for all
-  using (auth.role() = 'authenticated');
-
-create policy "Owner full access to settings"
-  on site_settings for all
-  using (auth.role() = 'authenticated');
-```
+5. Open **SQL Editor**, paste the contents of `supabase/schema.sql`, and click **Run**.
+   This creates the `projects` and `site_settings` tables, RLS policies, and the public `portfolio-media` storage bucket.
 
 ### Create the owner account
 

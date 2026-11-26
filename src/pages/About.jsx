@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { siteConfig } from '../data/siteConfig';
+import { useSiteConfig } from '../hooks/useSiteConfig';
 
 export default function About() {
+  const { config: siteConfig } = useSiteConfig();
   return (
     <main style={{ paddingTop: 'var(--nav-h)' }}>
       {/* Page header */}

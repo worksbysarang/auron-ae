@@ -1,5 +1,6 @@
-import { useProjects } from '../../hooks/useProjects';
 import { Link } from 'react-router-dom';
+import { useProjects } from '../../hooks/useProjects';
+import { isSupabaseConfigured } from '../../utils/supabase';
 
 export default function AdminOverview() {
   const { projects, loading } = useProjects({ adminMode: true });
@@ -28,6 +29,12 @@ export default function AdminOverview() {
           auron.ae content dashboard
         </p>
       </div>
+
+      {!isSupabaseConfigured && (
+        <div style={{ padding: 'var(--space-4)', background: 'rgba(230,241,74,0.08)', border: '1px solid rgba(230,241,74,0.2)', marginBottom: 'var(--space-6)', fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: 'var(--color-yellow)', lineHeight: 1.7 }}>
+          Supabase is not connected yet. Add your project URL and anon key to <code>.env</code>, run <code>supabase/schema.sql</code> in the SQL Editor, then restart the dev server.
+        </div>
+      )}
 
       {/* Stats */}
       <div className="admin-grid" style={{ marginBottom: 'var(--space-7)' }}>

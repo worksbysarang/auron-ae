@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
-import { siteConfig } from '../data/siteConfig';
+import { useSiteConfig } from '../hooks/useSiteConfig';
 import { useProjects } from '../hooks/useProjects';
 import ProjectCard from '../components/ProjectCard';
 import ProjectModal from '../components/ProjectModal';
 import { useState } from 'react';
 
 export default function Home() {
+  const { config: siteConfig } = useSiteConfig();
   const { projects, loading } = useProjects();
   const [selected, setSelected] = useState(null);
 
   const featured = projects.filter(p =>
-    siteConfig.featuredProjectIds.includes(p.id) || p.featured
+    p.featured || siteConfig.featuredProjectIds.includes(p.id) || siteConfig.featuredProjectIds.includes(p.slug)
   ).slice(0, 6);
 
   const idx = selected ? featured.findIndex(p => p.id === selected.id) : -1;
