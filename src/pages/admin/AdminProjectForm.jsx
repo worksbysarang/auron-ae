@@ -134,10 +134,13 @@ function DropZone({ label, folder, accept, maxMb, multiple = false, onUploaded, 
   );
 }
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export default function AdminProjectForm() {
   const { id }   = useParams();
   const navigate = useNavigate();
   const isNew    = !id || id === 'new';
+  const isUuid   = Boolean(id && UUID_RE.test(id));
 
   const [form,    setForm]    = useState(EMPTY_FORM);
   const [saving,  setSaving]  = useState(false);
@@ -147,7 +150,7 @@ export default function AdminProjectForm() {
   useEffect(() => {
     if (isNew) return;
     async function load() {
-      if (isSupabaseConfigured) {
+      if (isSupabaseConfigured && isUuid) {
         const { data } = await supabase.from('projects').select('*').eq('id', id).single();
         if (data) {
           setForm({
@@ -230,7 +233,7 @@ export default function AdminProjectForm() {
       };
 
       let sbError;
-      if (isNew) {
+      if (isNew || !isUuid) {
         ({ error: sbError } = await supabase.from('projects').insert([payload]));
       } else {
         ({ error: sbError } = await supabase.from('projects').update(payload).eq('id', id));

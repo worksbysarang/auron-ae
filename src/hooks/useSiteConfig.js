@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, createElement, useContext, useEffect, useState } from 'react';
 import { supabase, isSupabaseConfigured } from '../utils/supabase';
 import { siteConfig as localConfig } from '../data/siteConfig';
 
@@ -53,10 +53,10 @@ export function SiteConfigProvider({ children }) {
     load();
   }, []);
 
-  return (
-    <SiteConfigContext.Provider value={{ config, loading, refresh: load }}>
-      {children}
-    </SiteConfigContext.Provider>
+  return createElement(
+    SiteConfigContext.Provider,
+    { value: { config, loading, refresh: load } },
+    children
   );
 }
 

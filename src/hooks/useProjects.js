@@ -60,8 +60,12 @@ export function useProjects({ adminMode = false } = {}) {
       } catch (err) {
         console.error('useProjects error:', err);
         setError(err);
-        // Fallback to local data on error
-        setProjects(localProjects.filter(p => p.visible));
+        // In adminMode with Supabase configured, don't mask DB errors with local placeholders
+        if (adminMode && isSupabaseConfigured) {
+          setProjects([]);
+        } else {
+          setProjects(localProjects.filter(p => p.visible));
+        }
       } finally {
         setLoading(false);
       }
