@@ -23,14 +23,14 @@ export const siteConfig = {
   aboutBioLong: "auron.ae is my creative identity and the home for my work in video editing, motion graphics and graphic design. I build visuals for digital platforms, creators, and brands — from sharp social edits to full motion pieces.",
 
   // Contact — replace placeholders before going live
-  email: 'YOUR_EMAIL@example.com',
+  email: 'auroneditt@gmail.com',
 
   // Social — set to null or empty string to hide the link
   socials: {
-    instagram: '', // 'https://instagram.com/YOUR_HANDLE'
-    youtube:   '', // 'https://youtube.com/YOUR_CHANNEL'
-    behance:   '', // 'https://behance.net/YOUR_PROFILE'
-    linkedin:  '', // 'https://linkedin.com/in/YOUR_PROFILE'
+    instagram: 'https://www.instagram.com/auron.aee?jplx=ejltMnljMzZ0OGph', // 'https://instagram.com/YOUR_HANDLE'
+    youtube: 'https://youtube.com/@auronnedits?si=I0UDX2OnrWXOkRkR', // 'https://youtube.com/YOUR_CHANNEL'
+    behance: '', // 'https://behance.net/YOUR_PROFILE'
+    linkedin: 'https://www.linkedin.com/in/sarang-m-a86363334?', // 'https://linkedin.com/in/YOUR_PROFILE'
   },
 
   // Services
